@@ -1,13 +1,13 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/tmsic/deegle-translate-api/router"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run() // 0.0.0.0:8080 でサーバーを立てます。
+
+	// ルータ、ミドルウェアを設定
+	r := router.GetRouter()
+		r.Run()
 }
